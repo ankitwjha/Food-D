@@ -30,7 +30,7 @@ const recommendCombo = async (req, res) => {
             category: item.category
         }));
 
-        // Construct request payload for Gemini 1.5 Flash
+        // Construct request payload for Gemini 2.5 Flash
         const systemPrompt = `You are a culinary AI Plate Builder assistant for the Food-D app. 
 Analyze the user's query and recommend a custom combination/combo of food items from the provided menu list that satisfies their constraints (such as budget, mood, protein, dietary preferences like dairy-free, vegetarian, etc.).
 
@@ -59,7 +59,7 @@ Rules:
 }
 Ensure you return only the JSON object. Do not wrap in markdown code blocks like \`\`\`json.`;
 
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
         const response = await fetch(geminiUrl, {
             method: "POST",
