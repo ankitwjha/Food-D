@@ -22,26 +22,48 @@ const Add = ({url}) => {
 
     const onSubmitHAndler=async(event)=>{
         event.preventDefault();
-        const formData=new FormData();
-        formData.append("name",data.name);
-        formData.append("description",data.description);
-        formData.append("category",data.category);
-        formData.append("price",Number(data.price));
-        formData.append("image",image);
-        formData.append("owner",localStorage.getItem("adminUsername") || "abir123@12.com");
-        formData.append("restaurantName",localStorage.getItem("restaurantName") || "Food-D Express");
-        const response=await axios.post(`${url}/api/food/add`,formData)
-        if (response.data.success) {
-            setData({
-                name:"",
-                description:"",
-                category:"Salad",
-                price:""
-            })
-            setImage(false);
-            toast.success(response.data.message)
-        }else{
-            toast.error(response.data.message)
+        
+        const convertToBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = (error) => reject(error);
+            });
+        };
+
+        try {
+            let base64Image = "";
+            if (image) {
+                base64Image = await convertToBase64(image);
+            }
+
+            const payload = {
+                name: data.name,
+                description: data.description,
+                category: data.category,
+                price: Number(data.price),
+                image: base64Image,
+                owner: localStorage.getItem("adminUsername") || "abir123@12.com",
+                restaurantName: localStorage.getItem("restaurantName") || "Food-D Express"
+            };
+
+            const response = await axios.post(`${url}/api/food/add`, payload);
+            if (response.data.success) {
+                setData({
+                    name:"",
+                    description:"",
+                    category:"Salad",
+                    price:""
+                })
+                setImage(false);
+                toast.success(response.data.message)
+            } else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Error processing image upload");
         }
     }
 

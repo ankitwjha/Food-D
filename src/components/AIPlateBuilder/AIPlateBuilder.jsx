@@ -54,7 +54,7 @@ const AIPlateBuilder = () => {
     // Find image URL for menu items to show nice previews
     const getItemImage = (itemId) => {
         const item = food_list.find(f => f._id === itemId);
-        return item ? `${url}/images/${item.image}` : null;
+        return item ? (item.image && item.image.startsWith("data:") ? item.image : `${url}/images/${item.image}`) : null;
     };
 
     return (
