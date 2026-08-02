@@ -3,15 +3,39 @@
     grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
     align-items:center;
     gap:10px;
-    padding: 12px 15px;
-    border:1px solid #cacaca;
-    font-size:13px;
+    padding: 14px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: none;
+    font-size: 14px;
+    color: white;
+    background: rgba(255, 255, 255, 0.01);
+    transition: all 0.2s ease;
+}
+.list-table-format:hover:not(.title) {
+    background: rgba(255, 85, 0, 0.03);
+    border-color: rgba(255, 85, 0, 0.2);
 }
 .list-table-format.title{
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    font-weight: 600;
 }
 .list-table-format img{
     width:50px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.list-table-format .cursor {
+    color: #ff3333;
+    font-weight: 700;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+.list-table-format .cursor:hover {
+    color: #ff5555;
+    transform: scale(1.2);
 }
 @media(max-width:600px){
     .list-table-format{

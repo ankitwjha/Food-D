@@ -7,7 +7,8 @@ const orderSchema=new mongoose.Schema({
     address:{type:Object,required:true},
     status:{type:String,default:"Pending"},
     date:{type:Date,default:Date.now()},
-    payment:{type:Boolean,default:false}
+    payment:{type:Boolean,default:false},
+    hiddenByUser:{type:Boolean,default:false}
 })
 
 

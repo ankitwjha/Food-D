@@ -2,34 +2,142 @@
     width:70%;
     margin-left:max(5vw,25px);
     margin-top:50px;
-    color:#6d6d6d;
+    color:#94a3b8;
     font-size:16px;
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .add form{
-    gap:20px
+    gap:20px;
 }
-.add-img-upload img{
-    width:120px;
+.add-img-upload p {
+    font-weight: 600;
+    color: white;
+}
+.upload-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 120px;
+    border: 2px dashed rgba(255, 85, 0, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 85, 0, 0.01);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+.upload-dropzone:hover {
+    border-color: #ff5500;
+    background: rgba(255, 85, 0, 0.03);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 85, 0, 0.1);
+}
+.upload-placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    padding: 10px;
+}
+.upload-cloud-icon {
+    width: 32px;
+    height: 32px;
+    color: rgba(255, 85, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+.upload-dropzone:hover .upload-cloud-icon {
+    transform: translateY(-3px);
+    color: #ff5500;
+}
+.upload-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+.upload-subtitle {
+    font-size: 10px;
+    color: #64748b;
+}
+.upload-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+.upload-dropzone.has-preview {
+    border-style: solid;
+    border-color: rgba(255, 85, 0, 0.4);
+}
+.upload-dropzone.has-preview:hover .upload-preview-img {
+    transform: scale(1.03);
+}
+.add-product-name p, .add-product-description p, .add-category p, .add-price p {
+    font-weight: 600;
+    color: white;
 }
 .add-product-name, .add-product-description{
-    width:max(40%,280px)
+    width:max(50%,320px);
 }
 .add-product-name input, .add-product-description textarea{
-    padding: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.add-product-name input:focus, .add-product-description textarea:focus{
+    border-color: #ff5500;
+    box-shadow: 0 0 10px rgba(255, 85, 0, 0.2);
+    background: rgba(255, 85, 0, 0.02);
+}
+.add-product-name input::placeholder, .add-product-description textarea::placeholder {
+    color: #4b5563;
 }
 .add-category-price{
     display:flex;
     gap:30px;
 }
-.add-category-price select,.add-category-price input{
-    max-width:120px;
-    padding: 10px;
+.add-category-price select, .add-category-price input{
+    min-width: 140px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.add-category-price select option {
+    background-color: #0c0c0e;
+    color: white;
+}
+.add-category-price select:focus, .add-category-price input:focus{
+    border-color: #ff5500;
+    box-shadow: 0 0 10px rgba(255, 85, 0, 0.2);
+    background: rgba(255, 85, 0, 0.02);
 }
 .add-btn{
-    max-width:120px;
+    width: 140px;
     border:none;
-    padding: 10px;
-    background-color: black;
+    padding: 14px;
+    background: linear-gradient(90deg, #ff5500 0%, #ff7722 100%);
     color:white;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 85, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.add-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 85, 0, 0.4);
 }

@@ -28,6 +28,8 @@ const Add = ({url}) => {
         formData.append("category",data.category);
         formData.append("price",Number(data.price));
         formData.append("image",image);
+        formData.append("owner",localStorage.getItem("adminUsername") || "abir123@12.com");
+        formData.append("restaurantName",localStorage.getItem("restaurantName") || "Food-D Express");
         const response=await axios.post(`${url}/api/food/add`,formData)
         if (response.data.success) {
             setData({
@@ -48,8 +50,18 @@ const Add = ({url}) => {
         <form className='flex-col' onSubmit={onSubmitHAndler}>
             <div className="add-img-upload flex-col">
                 <p>Upload Image</p>
-                <label htmlFor="image">
-                    <img src={image?URL.createObjectURL(image):assets.upload_area} alt="" />
+                <label htmlFor="image" className={`upload-dropzone ${image ? 'has-preview' : ''}`}>
+                    {image ? (
+                        <img src={URL.createObjectURL(image)} alt="Preview" className="upload-preview-img" />
+                    ) : (
+                        <div className="upload-placeholder-content">
+                            <svg className="upload-cloud-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                            <span className="upload-title">Choose image file</span>
+                            <span className="upload-subtitle">PNG, JPG, or WEBP</span>
+                        </div>
+                    )}
                 </label>
                 <input onChange={(e)=>setImage(e.target.files[0])}  type="file" id="image" hidden required/>
             </div>

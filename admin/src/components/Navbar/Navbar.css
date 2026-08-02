@@ -2,11 +2,96 @@
     display:flex;
     justify-content: space-between;
     align-items:center;
-    padding:8px 4%;
+    padding:12px 6%;
+    background-color: #030305;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.navbar .logo{
-    width:max(10%,80px)
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.navbar-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 850;
+    font-size: 26px;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ffffff 0%, #ff5500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.navbar-logo-text:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 10px rgba(255, 85, 0, 0.3));
+}
+.navbar-logo-text .logo-sparkle {
+    font-size: 16px;
+    -webkit-text-fill-color: initial;
+    display: inline-block;
+    animation: rotateSparkle 4s linear infinite;
+}
+@keyframes rotateSparkle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.restaurant-badge {
+    background: rgba(255, 85, 0, 0.15);
+    color: #ff7722;
+    border: 1px solid rgba(255, 85, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.navbar-admin-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.admin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: 'Outfit', sans-serif;
+}
+.admin-name {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+.admin-label {
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 500;
 }
 .navbar .profile{
-    width:40px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 85, 0, 0.3);
+}
+.btn-logout {
+    background: transparent;
+    border: 1px solid rgba(255, 50, 50, 0.4);
+    color: #ff4444;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.2s ease;
+}
+.btn-logout:hover {
+    background: rgba(255, 50, 50, 0.1);
+    border-color: #ff3333;
+    color: #ff5555;
+    transform: translateY(-1px);
 }

@@ -7,7 +7,8 @@ const List = ({url}) => {
     const[list,setList]=useState([]);
 
     const fetchList=async ()=>{
-        const response=await axios.get(`${url}/api/food/list`);
+        const owner = localStorage.getItem("adminUsername") || "abir123@12.com";
+        const response=await axios.get(`${url}/api/food/list`, { params: { owner } });
         if (response.data.success) {
             setList(response.data.data)
         }

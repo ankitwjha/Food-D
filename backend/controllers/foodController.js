@@ -13,7 +13,9 @@ const addFood=async (req,res)=>{
         description:req.body.description,
         price:req.body.price,
         category:req.body.category,
-        image:image_filename
+        image:image_filename,
+        owner:req.body.owner || "abir123@12.com",
+        restaurantName:req.body.restaurantName || "Food-D Express"
     })
     try {
         await food.save();
@@ -27,7 +29,12 @@ const addFood=async (req,res)=>{
 //all food list
 const listFood=async(req,res)=>{
     try {
-        const foods=await foodModel.find({});
+        const { owner } = req.query;
+        let filter = {};
+        if (owner) {
+            filter.owner = owner;
+        }
+        const foods=await foodModel.find(filter);
         res.json({success:true,data:foods})
     } catch (error) {
         console.log(error);

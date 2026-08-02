@@ -1,11 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 
-const FoodItem = ({id,name,price,description,image}) => {
+const FoodItem = ({id,name,price,description,image,restaurantName}) => {
 
-    const{cartItems,addToCart,removeFromCart,url}=useContext(StoreContext)
+    const {cartItems,addToCart,removeFromCart,url,token,setShowAuthAlert}=useContext(StoreContext)
+
+    const handleAdd = () => {
+        if (!token) {
+            setShowAuthAlert(true)
+            return
+        }
+        addToCart(id)
+    }
 
   return (
     <div className='food-item'>
@@ -14,11 +22,11 @@ const FoodItem = ({id,name,price,description,image}) => {
         <img className="food-item-image" src={`${url}/images/${image}`} alt={name} />
         {
             !cartItems[id]
-            ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt=""/>
+            ?<img className='add' onClick={handleAdd} src={assets.add_icon_white} alt=""/>
             :<div className='food-item-counter'>
                 <img onClick={()=>removeFromCart(id)} src={assets.remove_icon_red} alt="" />
                 <p>{cartItems[id]}</p>
-                <img onClick={()=>addToCart(id)} src={assets.add_icon_green} alt="" />
+                <img onClick={handleAdd} src={assets.add_icon_green} alt="" />
             </div>
         }
        </div>
@@ -26,6 +34,9 @@ const FoodItem = ({id,name,price,description,image}) => {
         <div className="food-item-name-rating">
             <p>{name}</p>
             <img src={assets.rating_starts} alt="" />
+        </div>
+        <div className="food-item-restaurant">
+            <span>By {restaurantName}</span>
         </div>
         <p className='food-item-desc'>{description}</p>
         <p className='food-item-price'>₹{price}</p>

@@ -5,7 +5,7 @@ import FoodItem from '../FoodItem/FoodItem'
 
 const FoodDisplay = ({category}) => {
     
-    const {food_list}=useContext(StoreContext) 
+    const {food_list, searchQuery}=useContext(StoreContext) 
   return (
 
     
@@ -13,9 +13,10 @@ const FoodDisplay = ({category}) => {
       <h2>Top dishes near you</h2>
       <div className="food-display-list">
         {food_list.map((item,index)=>{
-       
-            if(category==="All" || category===item.category){
-               return <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image}/>
+            const matchesCategory = category==="All" || category===item.category;
+            const matchesSearch = !searchQuery || item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase());
+            if(matchesCategory && matchesSearch){
+               return <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} restaurantName={item.restaurantName || "Food-D Express"}/>
             }
         })}
       </div>

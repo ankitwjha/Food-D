@@ -47,21 +47,24 @@ const LoginPopup = ({setShowLogin}) => {
         <form onSubmit={onLogin}  className="login-popup-container">
             <div className="login-popup-title">
                 <h2>{currState}</h2>
-                <img onClick={()=>setShowLogin(false)} src={assets.cross_icon} alt="" />
+                <svg onClick={()=>setShowLogin(false)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="login-close-icon">
+                  <line x1="18" x2="6" y1="6" y2="18" />
+                  <line x1="6" x2="18" y1="6" y2="18" />
+                </svg>
             </div>
             <div className="login-popup-inputs">
-                {currState==="login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your Name ' required />}
-             <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email ' required />
-             <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password ' required />
+                {currState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your Name' required />}
+             <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your Email' required />
+             <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Your Password' required />
               </div>
-           <button type='submit'>{currState==="Sign Up"?"Create account":"Login"}</button>
+           <button type='submit'>{currState==="Sign Up"?"Create Account":"Login"}</button>
         <div className="login-popup-condition">
             <input type="checkbox" required />
             <p>By Continuing, I agree to the terms of use & privacy policy.</p>
         </div>
         {currState==="Login"?
-         <p>Create a new account?<span onClick={()=>setCurrState("Sign Up")}>Click here</span></p>
-         : <p>Already have an account?<span onClick={()=>setCurrState("Login")}>Login here</span></p>
+         <p>Create a new account? <span onClick={()=>setCurrState("Sign Up")}>Click here</span></p>
+         : <p>Already have an account? <span onClick={()=>setCurrState("Login")}>Login here</span></p>
     }
        
        

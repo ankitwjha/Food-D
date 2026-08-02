@@ -79,19 +79,41 @@ const verifyOrder=async(req,res)=>{
 //user orders
 const userOrders=async(req,res)=>{
     try {
-        const orders=await orderModel.find({userId:req.body.userId})
-            res.json({success:true,data:orders})
-        
+        const orders=await orderModel.find({userId:req.body.userId, hiddenByUser: { $ne: true }})
+        res.json({success:true,data:orders})
     } catch (error) {
         console.log(error)
         res.json({success:false,message:"Error fetching orders"})
     }
 }
 
+//hide order (soft delete on user side)
+const hideOrder=async(req,res)=>{
+    try {
+        const order = await orderModel.findOne({ _id: req.body.orderId, userId: req.body.userId });
+        if (!order) {
+            return res.json({ success: false, message: "Order not found" });
+        }
+        if (order.status !== "Delivered") {
+            return res.json({ success: false, message: "Only delivered orders can be removed" });
+        }
+        await orderModel.findByIdAndUpdate(req.body.orderId, { hiddenByUser: true });
+        res.json({ success: true, message: "Order removed" });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error removing order" });
+    }
+}
+
 //listing orders for admin
 const listOrders=async(req,res)=>{
     try {
-        const orders=await orderModel.find({});
+        const { owner } = req.query;
+        let filter = {};
+        if (owner) {
+            filter = { "items.owner": owner };
+        }
+        const orders=await orderModel.find(filter);
         res.json({success:true,data:orders})
     } catch (error) {
         console.log(error)
@@ -110,4 +132,4 @@ const updateStatus=async(req,res)=>{
     }
 }
 
-export {placeOrder,verifyOrder,userOrders,listOrders,updateStatus} 
+export {placeOrder,verifyOrder,userOrders,hideOrder,listOrders,updateStatus} 

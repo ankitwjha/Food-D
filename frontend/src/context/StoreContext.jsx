@@ -9,6 +9,7 @@ const StoreContextProvider=(props)=>{
     const url='http://localhost:4000'
     const[token,setToken]=useState("");
     const [food_list,setFoodList]=useState([])
+    const [cartPulse, setCartPulse] = useState(0);
 
     const addToCart=async (itemId)=>{
         if(!cartItems[itemId]){
@@ -17,6 +18,7 @@ const StoreContextProvider=(props)=>{
         else{
             setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
         }
+        setCartPulse(prev => prev + 1);
         if (token) {
             await axios.post(url+"/api/cart/add", { itemId },{headers:{token}})
         }
@@ -68,6 +70,9 @@ const StoreContextProvider=(props)=>{
         loadData();
         },[])
 
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showAuthAlert, setShowAuthAlert] = useState(false);
+
     const contextValue={
         food_list,
         cartItems,
@@ -78,6 +83,12 @@ const StoreContextProvider=(props)=>{
         url,
         token,
         setToken,
+        searchQuery,
+        setSearchQuery,
+        showAuthAlert,
+        setShowAuthAlert,
+        cartPulse,
+        setCartPulse
     }
     return(
         <StoreContext.Provider value={contextValue}>
