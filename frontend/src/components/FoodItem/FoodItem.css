@@ -19,6 +19,8 @@
 }
 .food-item-image{
     width: 100%;
+    height: 220px;
+    object-fit: cover;
     border-radius:15px 15px 0px 0px;
 }
 .food-item-info{
@@ -96,4 +98,23 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     display: inline-block;
+}
+
+@media (max-width: 600px) {
+    .food-item-image {
+        height: 160px;
+    }
+    .food-item-info {
+        padding: 12px;
+    }
+    .food-item-name-rating p {
+        font-size: 16px;
+    }
+    .food-item-price {
+        font-size: 20px;
+        margin: 5px 0px;
+    }
+    .food-item-desc {
+        font-size: 11px;
+    }
 }
