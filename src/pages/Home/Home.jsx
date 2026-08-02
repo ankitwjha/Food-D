@@ -3,6 +3,7 @@ import './Home.css'
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
+import AIPlateBuilder from '../../components/AIPlateBuilder/AIPlateBuilder'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 
@@ -219,6 +220,7 @@ const Home = () => {
           <span className="badge">Catalog</span>
           <h2 className="section-title">Explore Our Premium Menu</h2>
         </div>
+        <AIPlateBuilder />
         <ExploreMenu category={category} setCategory={setCategory} />
         <FoodDisplay category={category} />
       </div>
