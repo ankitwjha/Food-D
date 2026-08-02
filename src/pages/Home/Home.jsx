@@ -185,7 +185,7 @@ const Home = () => {
                 <p className="admin-desc">
                   Monitor incoming orders, configure food items, adjust pricing, and track delivery status in real-time.
                 </p>
-                <a href="http://localhost:5174" target="_blank" rel="noopener noreferrer" className="btn-admin-glow">
+                <a href={import.meta.env.VITE_ADMIN_URL || "http://localhost:5174"} target="_blank" rel="noopener noreferrer" className="btn-admin-glow">
                   Launch Dashboard ➜
                 </a>
               </div>
