@@ -28,7 +28,7 @@ connectDB();
 
 //api endpoints
 app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
+app.use("/images",express.static(process.env.VERCEL ? "/tmp" : "uploads"))
 app.use("/api/user",userRouter)
 app.use("/api/admin",adminRouter)
 app.use("/api/cart",cartRouter)
