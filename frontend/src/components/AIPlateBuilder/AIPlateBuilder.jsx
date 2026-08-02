@@ -60,7 +60,7 @@ const AIPlateBuilder = () => {
     return (
         <div className="ai-plate-builder glass-card">
             <div className="ai-header">
-                <span className="ai-badge">🤖 Gemini AI Assistant</span>
+                <span className="ai-badge">🤖 Your Personal Foodie Assistant</span>
                 <h3>AI Plate Builder & Cravings Assistant</h3>
                 <p>Describe your budget, dietary limits, or current mood, and let AI craft your customized meal combo!</p>
             </div>
