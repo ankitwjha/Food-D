@@ -142,3 +142,13 @@
         justify-content: start;
     }
 }
+
+@media (max-width: 650px) {
+    .cart-items {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .cart-items-title {
+        min-width: 550px;
+    }
+}

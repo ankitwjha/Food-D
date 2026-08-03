@@ -60,6 +60,16 @@ a{
   width:80%;
   margin:auto;
 }
+@media (max-width: 1050px) {
+  .app {
+    width: 90%;
+  }
+}
+@media (max-width: 600px) {
+  .app {
+    width: 94%;
+  }
+}
 
 /* Global Light Mode Overrides */
 .light-mode h1,

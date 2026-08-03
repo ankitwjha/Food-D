@@ -138,3 +138,10 @@
         max-width: 100%;
     }
 }
+
+@media (max-width: 600px) {
+    .place-order-left .multi-fields {
+        flex-direction: column;
+        gap: 0;
+    }
+}
