@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import foodModel from '../models/foodModel.js';
+import adminModel from '../models/adminModel.js';
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ export const connectDB = async () => {
     );
 
     // Dynamic Migration: Update food items' restaurantName to match their owner's restaurantName from the database
-    const adminsList = await mongoose.model("admins").find({});
+    const adminsList = await adminModel.find({});
     for (const admin of adminsList) {
       await foodModel.updateMany(
         { owner: admin.username },
